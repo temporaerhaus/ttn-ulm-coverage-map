@@ -36,7 +36,7 @@ var Map = Map || {};
 
         map = L.map('map', {
             center: new L.LatLng(48.399, 9.981),
-            zoom: 15,
+            zoom: 13,
             layers: [baseLayerMapBox],
             scrollWheelZoom: true
         });
