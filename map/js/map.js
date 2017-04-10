@@ -113,10 +113,10 @@ var Map = Map || {};
         var bounds = map.getBounds();
 
         _.forEach(data, function (d) {
-            if (bounds.contains(L.latLng(d[0], d[1]))) {
-                var marker = L.marker([d[0], d[1]]);
+            if (bounds.contains(L.latLng(d[1], d[2]))) {
+                var marker = L.marker([d[1], d[2]]);
                 marker.bindPopup(
-                    d[0] + ', ' + d[1] + '<br>RSSI: ' + d[2]*-1 + ' dBm'
+                    d[1] + ', ' + d[2] + '<br>RSSI: ' + d[3]*-1 + ' dBm'
                 );
                 marker.addTo(map);
                 currentMarkersOnMap.push(marker);
