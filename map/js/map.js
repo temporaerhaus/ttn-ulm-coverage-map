@@ -3,6 +3,7 @@ var Map = Map || {};
     'use strict';
 
     var map;
+    var heatLayer;
     var data = null;
     var currentMarkersOnMap = [];
 
@@ -11,11 +12,6 @@ var Map = Map || {};
             data = Data.getData();
             console.log('Number of data points: ' + data.length);
 
-            // convert data
-            data = _.map(data, function (d) {
-                return [d[1], d[2], Math.abs(d[3])];
-            });
-
         } else {
             console.log('Data object not defined');
         }
@@ -23,8 +19,40 @@ var Map = Map || {};
         if (data != null) {
             loadMap();
         }
+
+        bind();
     };
 
+
+    var bind = function () {
+        $('.filter input[type=checkbox]').on('change', function (event) {
+
+            var activeFilter = [];
+            $('.filter input[type=checkbox]:checked').each(function (index, element) {
+                activeFilter.push($(this).val());
+            });
+
+            if (activeFilter.length > 0) {
+
+                var _data = [];
+                _.filter(data, function (datapoint) {
+                    if (_.includes(activeFilter, datapoint[4])) {
+                        _data.push(datapoint);
+                    }
+                });
+
+                clearHeatmap();
+                renderHeatmap(_data);
+
+            } else {
+
+                clearHeatmap();
+                renderHeatmap(data);
+
+            }
+
+        });
+    };
 
     var loadMap = function() {
         var baseLayerMapBox = L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
@@ -48,14 +76,17 @@ var Map = Map || {};
             checkIfMarkerCanBeDrawn();
         });
 
-
         // render it
         renderHeatmap(data);
     };
 
+    var renderHeatmap = function (_data) {
 
-    var renderHeatmap = function () {
-        var heatLayer =  L.heatLayer(data, {
+        _data = _.map(_data, function (d) {
+                return [d[1], d[2], Math.abs(d[3])];
+            });
+
+        heatLayer =  L.heatLayer(_data, {
             radius: 50,
             blur: 100,
             max: 130
@@ -63,6 +94,11 @@ var Map = Map || {};
         heatLayer.addTo(map);
     };
 
+    var clearHeatmap = function () {
+        if (heatLayer != undefined) {
+            heatLayer.remove();
+        }
+    };
 
     var checkIfMarkerCanBeDrawn = function() {
         if (map.getZoom() > 17) {
@@ -72,7 +108,6 @@ var Map = Map || {};
             removeMarkersFromMap();
         }
     };
-
 
     var renderMarkerInBounds = function () {
         var bounds = map.getBounds();
@@ -88,7 +123,6 @@ var Map = Map || {};
             }
         });
     };
-
 
     var removeMarkersFromMap = function () {
         _.forEach(currentMarkersOnMap, function (marker) {
