@@ -6,12 +6,57 @@ var Map = Map || {};
     var heatLayer;
     var data = null;
     var currentMarkersOnMap = [];
+    var currentGatewaysOnMap = [];
+
+    var gateways = [
+        {
+            id: 'eui-0000024b080e1013',
+            lat: 48.404,
+            lng: 9.9852,
+            name: 'GW1 - Cortex Media Karlstrasse'
+        },
+        {
+            id: 'eui-0000024b0b030205',
+            lat: 48.3992,
+            lng: 9.9935,
+            name: 'GW2 - UNO GmbH Hafenbad'
+        },
+        {
+            id: 'eui-0000024b0b03020e',
+            lat: 48.403,
+            lng: 9.9955,
+            name: 'GW3 - SWP Frauenstrasse'
+        },
+        {
+            id: 'eui-0000024b0b0301ea',
+            lat: 48.3867,
+            lng: 9.9756,
+            name: 'GW4 - system.zwo Kuhberg'
+        },
+        {
+            id: 'eui-0000024b0b030220',
+            lat: 48.394167,
+            lng: 9.97045,
+            name: 'GW5 - Studierendenwerk Eselsberg'
+        },
+        {
+            id: 'eui-0000024b0b0301e0',
+            lat: 48.3965,
+            lng: 9.9906,
+            name: 'GW6 - Verschwörhaus 1 Weinhof'
+        },
+        {
+            id: 'eui-00800000a00003c7',
+            lat: 48.3965,
+            lng: 9.9902,
+            name: 'GW7 - Verschwörhaus 2 Weinhof'
+        }
+    ];
 
     exports.init = function () {
         if (typeof Data != 'undefined') {
             data = Data.getData();
             console.log('Number of data points: ' + data.length);
-
         } else {
             console.log('Data object not defined');
         }
@@ -21,6 +66,7 @@ var Map = Map || {};
         }
 
         bind();
+        insertKnownGateways();
     };
 
 
@@ -50,6 +96,8 @@ var Map = Map || {};
                 renderHeatmap(data);
 
             }
+
+            insertKnownGateways(activeFilter);
 
         });
     };
@@ -116,7 +164,7 @@ var Map = Map || {};
             if (bounds.contains(L.latLng(d[1], d[2]))) {
                 var marker = L.marker([d[1], d[2]]);
                 marker.bindPopup(
-                    d[1] + ', ' + d[2] + '<br>RSSI: ' + d[3]*-1 + ' dBm'
+                    d[1] + ', ' + d[2] + '<br>RSSI: ' + d[3] + ' dBm'
                 );
                 marker.addTo(map);
                 currentMarkersOnMap.push(marker);
@@ -128,6 +176,50 @@ var Map = Map || {};
         _.forEach(currentMarkersOnMap, function (marker) {
             marker.removeFrom(map);
         });
+    };
+
+    var removeGatewaysFromMap = function () {
+        _.forEach(currentGatewaysOnMap, function (gw) {
+            gw.removeFrom(map);
+        });
+        currentGatewaysOnMap = [];
+    };
+
+    var insertKnownGateways = function (activeGatewayIds) {
+
+        // clear state is easiert than handle the marker. with only 6 markers performance is not a problem.
+        removeGatewaysFromMap();
+
+        var localGateways;
+        if (activeGatewayIds != undefined && activeGatewayIds.length > 0) {
+            localGateways = _.filter(gateways, function (gw) {
+                return _.includes(activeGatewayIds, gw['id']);
+            });
+        } else {
+            localGateways = gateways;
+        }
+
+        _.forEach(localGateways, function (d) {
+
+            var icon = L.icon({
+                iconUrl: 'antenna.png',
+                iconSize:     [48, 48], // size of the icon
+                iconAnchor:   [64, 64], // point of the icon which will correspond to marker's location
+                popupAnchor:  [-40, -48] // point from which the popup should open relative to the iconAnchor
+            });
+            var marker = L.marker(
+                [d['lat'], d['lng']],
+                {icon: icon}
+            );
+            marker.bindPopup(
+                d['name']
+            );
+            marker.addTo(map);
+
+            currentGatewaysOnMap.push(marker);
+
+        });
+
     };
 
 })(window, _, Map);
