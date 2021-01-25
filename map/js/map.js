@@ -144,7 +144,7 @@ var Map = Map || {};
 
                 var _data = [];
                 _.filter(data, function (datapoint) {
-                    if (_.includes(activeFilter, datapoint[4])) {
+                    if (_.includes(activeFilter, datapoint[3])) {
                         _data.push(datapoint);
                     }
                 });
