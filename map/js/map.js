@@ -195,7 +195,7 @@ var Map = Map || {};
     var renderHeatmap = function (_data) {
 
         _data = _.map(_data, function (d) {
-                return [d[1], d[2], Math.abs(d[3])];
+                return [d[0], d[1], Math.abs(d[2])];
             });
 
         heatLayer =  L.heatLayer(_data, {
@@ -225,10 +225,10 @@ var Map = Map || {};
         var bounds = map.getBounds();
 
         _.forEach(data, function (d) {
-            if (bounds.contains(L.latLng(d[1], d[2]))) {
-                var marker = L.marker([d[1], d[2]]);
+            if (bounds.contains(L.latLng(d[0], d[1]))) {
+                var marker = L.marker([d[0], d[1]]);
                 marker.bindPopup(
-                    d[1] + ', ' + d[2] + '<br>RSSI: ' + d[3] + ' dBm'
+                    d[0] + ', ' + d[1] + '<br>RSSI: ' + d[2] + ' dBm'
                 );
                 marker.addTo(map);
                 currentMarkersOnMap.push(marker);
