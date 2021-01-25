@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>TTN Ulm Coverage</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content=""/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="css/map.css" />
+    <link rel="stylesheet" href="js/libs/leaflet/leaflet.css" />
+    <script src="js/libs/leaflet/leaflet.js"></script>
+    <script src="js/libs/jquery-3.2.0.min.js"></script>
+    <script src="js/libs/leaflet/leaflet-heat.js"></script>
+    <script src="js/libs/lodash.min.js"></script>
+
+    <style>
+
+    </style>
+</head>
+<body>
+
+<div id="map"></div>
+
+<div class="filter">
+    <strong>Filtern nach Gateway</strong>
+    <div id="legend"></div>
+</div>
+
+<div class="disclaimer">
+    <div>
+        <h2>LoRaWAN Abdeckungskarte Ulm</h2>
+        Die <em>Lücken</em> auf der Karte sind keine Funklöcher, sondern in den allermeisten Fällen Punkte, an denen nicht gemessen wurde. Das bedeutet nicht, dass dort kein Empfang zu erwarten ist.
+    </div>
+</div>
+
+<script src="js/data.js"></script>
+<script src="js/map.js"></script>
+</body>
+</html>

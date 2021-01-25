@@ -8,48 +8,108 @@ var Map = Map || {};
     var currentMarkersOnMap = [];
     var currentGatewaysOnMap = [];
 
-    var gateways = [
+    exports.gateways = [
         {
             id: 'eui-0000024b080e1013',
             lat: 48.404,
             lng: 9.9852,
-            name: 'GW1 - Cortex Media Karlstrasse'
+            name: 'ulm.digital - Cortex Media Karlstrasse'
+        },
+        {
+            id: 'eui-0000024b080e0d75',
+            lat: 48.3985081189661,
+            lng: 9.991811778526625,
+            name: 'ulm.digital & Verschwörhaus - Ulmer Münster'
         },
         {
             id: 'eui-0000024b0b030205',
             lat: 48.3992,
             lng: 9.9935,
-            name: 'GW2 - UNO GmbH Hafenbad'
+            name: 'ulm.digital - UNO GmbH Hafenbad'
         },
         {
             id: 'eui-0000024b0b03020e',
             lat: 48.403,
             lng: 9.9955,
-            name: 'GW3 - SWP Frauenstrasse'
+            name: 'ulm.digital - SWP Frauenstrasse'
         },
         {
             id: 'eui-0000024b0b0301ea',
             lat: 48.3867,
             lng: 9.9756,
-            name: 'GW4 - system.zwo Kuhberg'
+            name: 'ulm.digital - system.zwo Kuhberg'
         },
         {
-            id: 'eui-0000024b0b030220',
-            lat: 48.394167,
-            lng: 9.97045,
-            name: 'GW5 - Studierendenwerk Eselsberg'
+            id: 'ttn-ulm-verschwoerhaus',
+            lat: 48.3965,
+            lng: 9.9902,
+            name: 'ulm.digital - Verschwörhaus Indoor'
         },
         {
             id: 'eui-0000024b0b0301e0',
-            lat: 48.3965,
-            lng: 9.9906,
-            name: 'GW6 - Verschwörhaus 1 Weinhof'
+            lat: 48.42242987311834,
+            lng: 9.95659171656550,
+            name: 'ulm.digital - Uni Ulm'
         },
         {
-            id: 'eui-00800000a00003c7',
-            lat: 48.3965,
-            lng: 9.9902,
-            name: 'GW7 - Verschwörhaus 2 Weinhof'
+            id: 'eui-7276ff000b0314a0',
+            lat: 48.385823387593426,
+            lng: 9.985580951233226,
+            name: 'ulm.digital - Donaubad'
+        },
+        {
+            id: 'eui-aa555a000b0311f9',
+            lat:48.393710306823586,
+            lng: 9.991316384268691,
+            name: 'ulm.digital - Edwin-Scharff-Haus'
+        },
+        {
+            id: 'eui-7076ff0056040065',
+            lat: 48.38492561198574,
+            lng: 9.957803312955997,
+            name: 'Citysens - Schulzentrum Kuhberg'
+        },
+        {
+            id: 'eui-fcc23dfffe0b6fcd',
+            lat: 48.403957200864234,
+            lng: 9.985167498917964,
+            name: 'Citysens - Karlstrasse 1'
+        },
+        {
+            id: 'eui-647fdafffe00a739',
+            lat: 48.430948256137675,
+            lng: 10.018304757520463,
+            name: 'Citysens - Böfingen Hochhaus'
+        },
+        {
+            id: 'eui-7076ff0056050523',
+            lat: 48.396424492211956,
+            lng: 9.990451772138279,
+            name: 'Citysens / Stadt Ulm - LoraPark'
+        },
+        {
+            id: 'eui-7276ff000b032417',
+            lat: 48.39726170,
+            lng: 9.97029634,
+            name: 'SWU Telenet / Citysens - Bauhoferstraße'
+        },
+        {
+            id: 'eui-0000024b0b030220',
+            lat: 48.413197936550084,
+            lng: 9.950905849136259,
+            name: 'Studierendenwerk Ulm - Eselsberg'
+        },
+        {
+            id: 'eui-0000024b09030b6e',
+            lat: 48.41815768511138,
+            lng: 9.939730925316319,
+            name: 'THU - Eselsberg'
+        },
+        {
+            id: 'eui-0000fcc23d0f9db2',
+            lat: 48.38031967,
+            lng: 10.01188675,
+            name: 'HNU - Neu-Ulm'
         }
     ];
 
@@ -67,11 +127,13 @@ var Map = Map || {};
 
         bind();
         insertKnownGateways();
+        drawLegend();
     };
 
 
     var bind = function () {
-        $('.filter input[type=checkbox]').on('change', function (event) {
+
+        $(document).on('change', '.filter input[type=checkbox]', function (event) {
 
             var activeFilter = [];
             $('.filter input[type=checkbox]:checked').each(function (index, element) {
@@ -103,15 +165,13 @@ var Map = Map || {};
     };
 
     var loadMap = function() {
-        var baseLayerMapBox = L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
+        var baseLayerMapBox = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
-            maxZoom: 18,
-            id: 'mapbox.streets',
-            accessToken: 'pk.eyJ1IjoiY29ydGV4bWVkaWEiLCJhIjoiY2l3ZjNyNmR1MDA2cjJ5dW1tN2o0eHRyeiJ9.6BEJDEUBuZQzkxgStBoM8w'
+            maxZoom: 18
         });
 
         map = L.map('map', {
-            center: new L.LatLng(48.399, 9.981),
+            center: new L.LatLng(48.399, 10.0),
             zoom: 13,
             layers: [baseLayerMapBox],
             scrollWheelZoom: true
@@ -122,6 +182,10 @@ var Map = Map || {};
         });
         map.on('moveend', function () {
             checkIfMarkerCanBeDrawn();
+        });
+
+        map.on('click', function (mouseEvent) {
+            console.log(mouseEvent.latlng.lat + ', ' + mouseEvent.latlng.lng);
         });
 
         // render it
@@ -192,20 +256,20 @@ var Map = Map || {};
 
         var localGateways;
         if (activeGatewayIds != undefined && activeGatewayIds.length > 0) {
-            localGateways = _.filter(gateways, function (gw) {
+            localGateways = _.filter(exports.gateways, function (gw) {
                 return _.includes(activeGatewayIds, gw['id']);
             });
         } else {
-            localGateways = gateways;
+            localGateways = exports.gateways;
         }
 
         _.forEach(localGateways, function (d) {
 
             var icon = L.icon({
-                iconUrl: 'antenna.png',
+                iconUrl: 'img/antenna.svg',
                 iconSize:     [48, 48], // size of the icon
-                iconAnchor:   [64, 64], // point of the icon which will correspond to marker's location
-                popupAnchor:  [-40, -48] // point from which the popup should open relative to the iconAnchor
+                iconAnchor:   [24, 42], // point of the icon which will correspond to marker's location
+                popupAnchor:  [24, 24] // point from which the popup should open relative to the iconAnchor
             });
             var marker = L.marker(
                 [d['lat'], d['lng']],
@@ -220,6 +284,12 @@ var Map = Map || {};
 
         });
 
+    };
+
+    var drawLegend = function () {
+        Map.gateways.forEach(function (item, index){
+            $('#legend').append('<div><label><input type="checkbox" value="'+item['id']+'">'+item.name+'</label></div>');
+        });
     };
 
 })(window, _, Map);
