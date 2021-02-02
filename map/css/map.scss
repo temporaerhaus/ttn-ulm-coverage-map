@@ -2,7 +2,52 @@ html, body {
   margin: 0;
   width: 100%;
   height: 100%;
-  font-family: sans-serif;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
+  line-height: 1.15rem;
+}
+
+h2 {
+  margin: 0 0 1rem 0;
+}
+
+h3 {
+  margin: 0 0 0.5rem 0;
+}
+
+p {
+  margin-bottom: 0.5rem;
+}
+
+.font-small {
+  font-size: 0.8rem;
+}
+
+.hidden {
+  display: none;
+}
+
+.logos {
+  display: flex;
+  justify-content: center;
+  .logo {
+    width: 64px;
+    margin: 0 0.5rem;
+  }
+}
+
+.expand-arrow {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  min-height: 2rem;
+
+  cursor: pointer;
+
+  &:hover {
+    background-color: #f5f5f5;
+  }
 }
 
 #map {
@@ -12,23 +57,53 @@ html, body {
 
 .filter {
   position: absolute;
-  right: 0;
+  width: 25%;
+  max-width: 420px;
+  min-width: 280px;
+  right: 10px;
   bottom: 20px;
   z-index: 500;
 
   font-size: 0.85rem;
   background-color: rgba(255,255,255,1.0);
   padding: 16px;
+
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
 }
 
 .disclaimer {
   position: absolute;
-  left: 5%;
+  width: 25%;
+  max-width: 420px;
+  min-width: 280px;
+  right: 10px;
   top: 10px;
-  width: 40%;
-  z-index: 500;
+  z-index: 600;
 
   font-size: 0.85rem;
   background-color: rgba(255, 255, 255, 1.0);
   padding: 16px;
+
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+}
+
+
+/* roboto-regular - latin */
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  src: local(''),
+  url('../fonts/roboto-v20-latin-regular.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
+  url('../fonts/roboto-v20-latin-regular.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+}
+
+/* roboto-500 - latin */
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 500;
+  src: local(''),
+  url('../fonts/roboto-v20-latin-500.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
+  url('../fonts/roboto-v20-latin-500.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
 }

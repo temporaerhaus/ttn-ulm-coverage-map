@@ -171,7 +171,7 @@ var Map = Map || {};
         });
 
         map = L.map('map', {
-            center: new L.LatLng(48.399, 10.0),
+            center: new L.LatLng(48.399, 10.02),
             zoom: 13,
             layers: [baseLayerMapBox],
             scrollWheelZoom: true
@@ -184,9 +184,10 @@ var Map = Map || {};
             checkIfMarkerCanBeDrawn();
         });
 
-        map.on('click', function (mouseEvent) {
-            console.log(mouseEvent.latlng.lat + ', ' + mouseEvent.latlng.lng);
-        });
+        // for debuging
+        // map.on('click', function (mouseEvent) {
+        //     console.log(mouseEvent.latlng.lat + ', ' + mouseEvent.latlng.lng);
+        // });
 
         // render it
         renderHeatmap(data);
@@ -269,7 +270,7 @@ var Map = Map || {};
                 iconUrl: 'img/antenna.svg',
                 iconSize:     [48, 48], // size of the icon
                 iconAnchor:   [24, 42], // point of the icon which will correspond to marker's location
-                popupAnchor:  [24, 24] // point from which the popup should open relative to the iconAnchor
+                popupAnchor:  [0, -42] // point from which the popup should open relative to the iconAnchor
             });
             var marker = L.marker(
                 [d['lat'], d['lng']],

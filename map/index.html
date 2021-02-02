@@ -23,18 +23,48 @@
 <div id="map"></div>
 
 <div class="filter">
-    <strong>Filtern nach Gateway</strong>
+    <h3>Messungen nach Gateway filtern</h3>
+    <p class="font-small">
+        <strong>Wichtig:</strong> Es wird nur die jeweils <strong>beste</strong> Messung je Gateway angezeigt. D.h. es erscheinen bei aktivem Filter nur die Messungen, für die dieses Gateway das mit dem besten Empfang war.
+    </p>
     <div id="legend"></div>
 </div>
 
 <div class="disclaimer">
     <div>
         <h2>LoRaWAN Abdeckungskarte Ulm</h2>
-        Die <em>Lücken</em> auf der Karte sind keine Funklöcher, sondern in den allermeisten Fällen Punkte, an denen nicht gemessen wurde. Das bedeutet nicht, dass dort kein Empfang zu erwarten ist.
+        <di class="disclaimer-text">
+            <div class="logos">
+                <img src="img/vsh_logo.svg" class="logo">
+                <img src="img/vsh_logo.svg" class="logo">
+            </div>
+            <p>
+                Die LoRaWAN Abdeckungskarte für die Region Ulm und Neu-Ulm, erstellt von der TTN/LoRa Gruppe im Verschwörhaus und der Citysens GmbH. Enstanden in Kooperation mit der EBU (Entsorgungsbetriebe Ulm) und dem Baubetriebshof Neu-Ulm, die uns mit ihren Müllfahrzeugen beim Erstellen dieser Karte unterstützt haben.
+            </p>
+        </div>
+        <div class="disclaimer-expand expand-container">
+            <div class="disclaimer-expand-text hidden">
+                <p>
+                    Über einen Zeitraum von je zwei Wochen fuhren drei (NU) bzw. fünf (UL) Müllfahrzeige, die zuvor mit GPS Empfängern und LoRa Sendern ausgestattet worden sind, ihre normalen Runden und erstelten so nach und nach diese Abdeckungskarte.
+                </p>
+                <p>
+                    Die "Lücken" bei hoher Zoomstufe sind keinesfalls "Funklöcher" auf der Karte, wo es keinen Empfang gibt. An diesen Stellen konnten wir lediglich bisher keine Messungen durchführen. Sind aber direkte Messungen in der Nachbarschaft vorhanden, ist ein Empfang sehr wahrscheinlich.
+                </p>
+                <p>
+                    Messungen außerhalb Ulm und Neu-Ulm sind bisher keine durchgeführt worden. Empfang ist dort jedoch nicht ausgeschlossen. LoRaWAN hat eine hohe Reichweite, ein Versuch lohnt sich in jedem Fall.
+                </p>
+            </div>
+
+            <div class="expand-arrow">
+                <img src="img/arrow_down.svg">
+                <img src="img/arrow_up.svg" class="hidden">
+            </div>
+        </div>
     </div>
 </div>
 
 <script src="js/data.js"></script>
 <script src="js/map.js"></script>
+<script src="js/main.js"></script>
 </body>
 </html>
