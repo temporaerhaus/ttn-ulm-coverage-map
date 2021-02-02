@@ -8,12 +8,20 @@ html, body {
 
 h2 {
   margin: 0 0 1rem 0; }
+  h2.title {
+    text-align: center; }
 
 h3 {
   margin: 0 0 0.5rem 0; }
 
 p {
   margin-bottom: 0.5rem; }
+
+a {
+  color: #3388ff;
+  text-decoration: none; }
+  a:hover {
+    text-decoration: underline; }
 
 .font-small {
   font-size: 0.8rem; }
@@ -25,7 +33,7 @@ p {
   display: flex;
   justify-content: center; }
   .logos .logo {
-    width: 64px;
+    height: 50px;
     margin: 0 0.5rem; }
 
 .expand-arrow {

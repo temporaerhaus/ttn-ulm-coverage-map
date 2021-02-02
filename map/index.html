@@ -1,11 +1,12 @@
 <!doctype html>
 <html lang="en">
 <head>
-    <title>TTN Ulm Coverage</title>
+    <title>LoRaWAN Abdeckungskarte Ulm / Neu-Ulm</title>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="description" content=""/>
+    <meta name="description" content="LoRaWAN Abdeckungskarte für Ulm und Neu-Ulm. Erstellt von der LoRaWAN Gruppe im Verschwörhaus und der Citysens GmbH."/>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#01a7ff">
 
     <link rel="stylesheet" href="css/map.css" />
     <link rel="stylesheet" href="js/libs/leaflet/leaflet.css" />
@@ -14,9 +15,24 @@
     <script src="js/libs/leaflet/leaflet-heat.js"></script>
     <script src="js/libs/lodash.min.js"></script>
 
-    <style>
+    <link rel="apple-touch-icon" sizes="57x57" href="img/favicon/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="img/favicon/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="img/favicon/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="img/favicon/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="img/favicon/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="img/favicon/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="img/favicon/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="img/favicon/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="img/favicon/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="img/favicon/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="img/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="img/favicon/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="img/favicon/favicon-16x16.png">
+    <link rel="manifest" href="/manifest.json">
+    <meta name="msapplication-TileColor" content="#01a7ff">
+    <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
 
-    </style>
 </head>
 <body>
 
@@ -30,20 +46,23 @@
     <div id="legend"></div>
 </div>
 
-<div class="disclaimer">
+<header class="disclaimer">
     <div>
-        <h2>LoRaWAN Abdeckungskarte Ulm</h2>
-        <di class="disclaimer-text">
+        <h2 class="title">LoRaWAN Abdeckungskarte<br>Ulm / Neu-Ulm</h2>
+        <section class="disclaimer-text">
             <div class="logos">
                 <img src="img/vsh_logo.svg" class="logo">
-                <img src="img/vsh_logo.svg" class="logo">
+                <img src="img/citysens_logo.png" class="logo">
             </div>
             <p>
-                Die LoRaWAN Abdeckungskarte für die Region Ulm und Neu-Ulm, erstellt von der TTN/LoRa Gruppe im Verschwörhaus und der Citysens GmbH. Enstanden in Kooperation mit der EBU (Entsorgungsbetriebe Ulm) und dem Baubetriebshof Neu-Ulm, die uns mit ihren Müllfahrzeugen beim Erstellen dieser Karte unterstützt haben.
+                Die LoRaWAN Abdeckungskarte für die Region Ulm und Neu-Ulm, erstellt von der <a href="https://lora.ulm-digital.com">TTN/LoRa Gruppe</a> im Verschwörhaus und der <a href="https://citysens.de">Citysens GmbH</a>. Enstanden in Kooperation mit der EBU (Entsorgungsbetriebe Ulm) und dem Baubetriebshof Neu-Ulm, die uns mit ihren Müllfahrzeugen beim Erstellen dieser Karte unterstützt haben.
+            </p>
+            <p>
+                Weitere Infos:
             </p>
         </div>
         <div class="disclaimer-expand expand-container">
-            <div class="disclaimer-expand-text hidden">
+            <section class="disclaimer-expand-text hidden">
                 <p>
                     Über einen Zeitraum von je zwei Wochen fuhren drei (NU) bzw. fünf (UL) Müllfahrzeige, die zuvor mit GPS Empfängern und LoRa Sendern ausgestattet worden sind, ihre normalen Runden und erstelten so nach und nach diese Abdeckungskarte.
                 </p>
@@ -53,14 +72,14 @@
                 <p>
                     Messungen außerhalb Ulm und Neu-Ulm sind bisher keine durchgeführt worden. Empfang ist dort jedoch nicht ausgeschlossen. LoRaWAN hat eine hohe Reichweite, ein Versuch lohnt sich in jedem Fall.
                 </p>
-            </div>
+            </section>
 
             <div class="expand-arrow">
                 <img src="img/arrow_down.svg">
                 <img src="img/arrow_up.svg" class="hidden">
             </div>
         </div>
-    </div>
+    </header>
 </div>
 
 <script src="js/data.js"></script>
