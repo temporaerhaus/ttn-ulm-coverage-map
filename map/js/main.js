@@ -18,6 +18,16 @@ var Main = Main || {};
                 .toggle();
         });
 
+        $('#disclaimer-collapse, #filter-collapse').on('click', function (){
+            $(this).find('img').toggle();
+
+            if ($(this).parents('.disclaimer, .filter').find('.disclaimer-left, .filter-left').is(':visible')) {
+                $(this).parents('.disclaimer, .filter').find('.disclaimer-left, .filter-left').hide();
+            } else {
+                $(this).parents('.disclaimer, .filter').find('.disclaimer-left, .filter-left').show();
+            }
+        });
+
     };
 
 })(window, jQuery, Main);

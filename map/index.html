@@ -40,15 +40,21 @@
 <div id="map"></div>
 
 <div class="filter">
-    <h3>Messungen nach Gateway filtern</h3>
-    <p class="font-small" id="filter-disclaimer">
-        <strong>Wichtig:</strong> Es wird nur die jeweils <strong>beste</strong> Messung je Gateway angezeigt. D.h. es erscheinen bei aktivem Filter nur die Messungen, für die dieses Gateway das mit dem besten Empfang war.
-    </p>
-    <div id="legend"></div>
+    <div class="filter-left">
+        <h3>Messungen nach Gateway filtern</h3>
+        <p class="font-small" id="filter-disclaimer">
+            <strong>Wichtig:</strong> Es wird nur die jeweils <strong>beste</strong> Messung je Gateway angezeigt. D.h. es erscheinen bei aktivem Filter nur die Messungen, für die dieses Gateway das mit dem besten Empfang war.
+        </p>
+        <div id="legend"></div>
+    </div>
+    <div class="filter-right" id="filter-collapse">
+        <img src="img/arrow_right.svg" class="">
+        <img src="img/arrow_left.svg" class="hidden">
+    </div>
 </div>
 
 <header class="disclaimer">
-    <div>
+    <div class="disclaimer-left">
         <h2 class="title">LoRaWAN Abdeckungskarte<br>Ulm / Neu-Ulm</h2>
         <section class="disclaimer-text">
             <div class="logos">
@@ -58,15 +64,10 @@
             <p class="first-text-1">
                 Die LoRaWAN Abdeckungskarte für die Region Ulm und Neu-Ulm, erstellt von der <a href="https://lora.ulm-digital.com">TTN/LoRa Gruppe</a> im Verschwörhaus und der <a href="https://citysens.de">Citysens GmbH</a>. Enstanden in Kooperation mit der EBU (Entsorgungsbetriebe Ulm) und dem Baubetriebshof Neu-Ulm, die uns mit ihren Müllfahrzeugen beim Erstellen dieser Karte unterstützt haben.
             </p>
-            <p>
-                Weitere Infos:
-            </p>
-        </div>
+        </section>
         <div class="disclaimer-expand expand-container">
             <section class="disclaimer-expand-text hidden">
-                <p class="first-text-2 hidden">
-                    Die LoRaWAN Abdeckungskarte für die Region Ulm und Neu-Ulm, erstellt von der <a href="https://lora.ulm-digital.com">TTN/LoRa Gruppe</a> im Verschwörhaus und der <a href="https://citysens.de">Citysens GmbH</a>. Enstanden in Kooperation mit der EBU (Entsorgungsbetriebe Ulm) und dem Baubetriebshof Neu-Ulm, die uns mit ihren Müllfahrzeugen beim Erstellen dieser Karte unterstützt haben.
-                </p>
+
                 <p>
                     Über einen Zeitraum von je zwei Wochen fuhren drei (NU) bzw. fünf (UL) Müllfahrzeige, die zuvor mit GPS Empfängern und LoRa Sendern ausgestattet worden sind, ihre normalen Runden und erstelten so nach und nach diese Abdeckungskarte.
                 </p>
@@ -83,8 +84,12 @@
                 <img src="img/arrow_up.svg" class="hidden">
             </div>
         </div>
-    </header>
-</div>
+    </div>
+    <div class="disclaimer-right" id="disclaimer-collapse">
+        <img src="img/arrow_right.svg" class="">
+        <img src="img/arrow_left.svg" class="hidden">
+    </div>
+</header>
 
 <script src="js/data.js"></script>
 <script src="js/map.js"></script>
