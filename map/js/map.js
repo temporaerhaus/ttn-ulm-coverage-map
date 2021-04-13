@@ -216,7 +216,7 @@ var Map = Map || {};
     var checkIfMarkerCanBeDrawn = function() {
         if (map.getZoom() > 17) {
             removeMarkersFromMap();
-            renderMarkerInBounds();
+            //renderMarkerInBounds();
         } else {
             removeMarkersFromMap();
         }
